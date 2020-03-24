@@ -1,68 +1,106 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-lazy-progressive-image
 
-## Available Scripts
+Load low resolution/ placeholder image first and then load the actual image lazily when it's in the viewport.
 
-In the project directory, you can run:
+<hr/>
 
-### `yarn start`
+[![](https://nodei.co/npm/react-lazy-progressive-image.png?compact=true)](https://nodei.co/npm/react-lazy-progressive-image/)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[![npm](https://img.shields.io/npm/dm/react-lazy-progressive-image.svg?style=for-the-badge)](https://www.npmjs.com/package/react-lazy-progressive-image)
+[![npm](https://img.shields.io/npm/l/react-lazy-progressive-image.svg?style=for-the-badge)](https://www.npmjs.com/package/react-lazy-progressive-image)
+![Build Status](https://github.com/imbhargav5/react-lazy-progressive-image/workflows/Tests/badge.svg)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+</p>
+<hr/>
 
-### `yarn test`
+<img src="https://github.com/imbhargav5/react-lazy-progressive-image/blob/master/.github/screenshare.gif?raw=true"/>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<hr/>
 
-### `yarn build`
+# :zap: Why?
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Load low resolution/ placeholder image first and then load the actual image lazily when it's in the viewport.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<hr/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# :zap: Installation
 
-### `yarn eject`
+The package is available on npm.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm i -s react-lazy-progressive-image
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<hr/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# :zap: Usage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Just like `react-progressive-image` this component expects exactly one child which has to be a function.
 
-## Learn More
+```javascript
+import React, { Component } from 'react';
+import LazyImage from 'react-lazy-progressive-image';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const App = () => {
+	return (
+		<LazyImage thumbnail={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
+			{(src, style) => <img src={src} style={style} />}
+		</LazyImage>
+	);
+};
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The child which is a function will have access to `src` and `style` values as arguments and the user can decide how to use those values to render image styles. (This pattern is called render props or children props pattern)
 
-### Code Splitting
+| Render prop           | Description                                                                                      | Type    | Values                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------ | ------- | --------------------------------------------------------------------------------------------------- |
+| src                   | The src of the image being rendered                                                              | String  | Initially points to the placeholder image, then loads image and will then point to the source image |
+| loading               | Whether the image is currently being loaded                                                      | Boolean | true/false                                                                                          |
+| isVisible             | Whether the image is currently visible in the page. This is managed by `react-visibility-sensor` | Boolean | true/false                                                                                          |
+| visibilitySensorProps | Props to pass to `react-visibility-sensor` . Handy for `partialVisibility`                       | Object  | `undefined` or `{}`                                                                                 |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+<hr/>
 
-### Analyzing the Bundle Size
+### Example usage with styled-components
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+You can use `styled-components`, to transition an image from the placeholder when the image has loaded.
+You can use the `render props` as mentioned above and then use it to animate the `opacity` of the image from `0.2` to `1` when the image is loaded. This is , of course, a basic example. But you can use this logic to create more powerful animations.
 
-### Making a Progressive Web App
+For eg :
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```javascript
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import LazyImage from 'react-lazy-blur-image';
 
-### Advanced Configuration
+const Image = styled.img`
+	height: 450px;
+	width: 800px;
+	margin-top: 200px;
+	display: block;
+	transition: all 0.25s ease;
+	opacity: ${props => (props.loading ? 0.2 : 1)};
+`;
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+const Usage = () => {
+	return (
+		<LazyImage uri={'/assets/imageURL'} thumbnail={'/assets/placeholderURL'}>
+			{(src, style) => <Image src={src} style={style} />}
+		</LazyImage>
+	);
+};
+```
 
-### Deployment
+<hr/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## How was this package made 🔧
 
-### `yarn build` fails to minify
+A good amount of code has been taken from <a href="https://github.com/FormidableLabs/react-progressive-image">react-progressive-image</a>, the additions being the usage of <a href="https://github.com/joshwnj/react-visibility-sensor">react-visibility-sensor</a> to check if there is a need to load the image and making sure that the image doesn't load in advance when it's not really needed.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<hr/>
+
+## 🙏 Credits
+
+1. <a href="https://github.com/FormidableLabs"> Formidable Labs </a>
+2. <a href="https://github.com/joshwnj"> Josh Johnston </a>
+3. <a href="https://github.com/imbhargav5">Bhargav Ponnapalli</a> (Found out about his library by searching a free name on npmjs.com turned out our components are almost the same)
