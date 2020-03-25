@@ -12,13 +12,19 @@ Load low resolution / placeholder image first and then load the actual image laz
 </p>
 <hr/>
 
-<img src="https://github.com/imbhargav5/react-lazy-progressive-image/blob/master/.github/screenshare.gif?raw=true"/>
+Example with 1000 images
+
+<img src="https://github.com/meienberger/react-lazy-blur-image/raw/master/showcase.gif?raw=true"/>
 
 <hr/>
 
-# :zap: Why?
+# :zap: How does it work ?
 
-Load low resolution / placeholder image first and then load the actual image lazily when it's in the viewport.
+The component starts by displaying a lightweight gray placeholder (base64 encoded).
+
+When the component is about to reach the viewport, the gray placeholder is replaced with the actual placeholder you provided (Can be any image. Either local placeholder or remote low resolution image) and at the same time the actual image is loaded lazily and replaces the placeholder when it's fully loaded.
+
+This gives us an absolute perfect user experience / performance balance. 
 
 <hr/>
 
@@ -30,33 +36,35 @@ The package is available on npm.
 npm i -s react-lazy-blur-image
 ```
 
+```bash
+yarn add react-lazy-blur-image
+```
+
 <hr/>
 
 # :zap: Usage
 
-Just like `react-progressive-image` this component expects exactly one child which has to be a function.
+This component expects exactly one child which has to be a function. You get the `src` and the `style` to apply (for blur effect)
 
 ```javascript
-import React, { Component } from 'react';
-import LazyImage from 'react-lazy-progressive-image';
+import React from 'react';
+import LazyImage from 'react-lazy-blur-image';
 
 const App = () => {
-	return (
-		<LazyImage thumbnail={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
-			{(src, style) => <img src={src} style={style} />}
-		</LazyImage>
-	);
+  return (
+    <LazyImage placeholder={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
+      {(src, style) => <img src={src} style={style} />}
+    </LazyImage>
+  );
 };
 ```
 
-The child which is a function will have access to `src` and `style` values as arguments and the user can decide how to use those values to render image styles. (This pattern is called render props or children props pattern)
+The child which is a function will have access to `src` and `style` (for blur effect) values as arguments.                                                                            
 
-| Render prop           | Description                                                                                      | Type    | Values                                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------ | ------- | --------------------------------------------------------------------------------------------------- |
-| src                   | The src of the image being rendered                                                              | String  | Initially points to the placeholder image, then loads image and will then point to the source image |
-| loading               | Whether the image is currently being loaded                                                      | Boolean | true/false                                                                                          |
-| isVisible             | Whether the image is currently visible in the page. This is managed by `react-visibility-sensor` | Boolean | true/false                                                                                          |
-| visibilitySensorProps | Props to pass to `react-visibility-sensor` . Handy for `partialVisibility`                       | Object  | `undefined` or `{}`                                                                                 |
+Render prop | Description | Type | Value
+--- | --- | --- | ---
+src | The src of the image being rendered | String | Initially points to the placeholder image, then loads image and will then point to the source image
+style | Style props to apply to your rendered image (blur effect) | Object | Jsx style object
 
 <hr/>
 
@@ -73,20 +81,18 @@ import styled from 'styled-components';
 import LazyImage from 'react-lazy-blur-image';
 
 const Image = styled.img`
-	height: 450px;
-	width: 800px;
-	margin-top: 200px;
-	display: block;
-	transition: all 0.25s ease;
-	opacity: ${props => (props.loading ? 0.2 : 1)};
+  height: 450px;
+  width: 800px;
+  margin-top: 200px;
+  display: block;
 `;
 
 const Usage = () => {
-	return (
-		<LazyImage uri={'/assets/imageURL'} thumbnail={'/assets/placeholderURL'}>
-			{(src, style) => <Image src={src} style={style} />}
-		</LazyImage>
-	);
+  return (
+    <LazyImage uri={'/assets/imageURL'} thumbnail={'/assets/placeholderURL'}>
+      {(src, style) => <Image src={src} style={style} />}
+    </LazyImage>
+  );
 };
 ```
 
@@ -94,7 +100,7 @@ const Usage = () => {
 
 ## How was this package made 🔧
 
-A good amount of code has been taken from <a href="https://github.com/FormidableLabs/react-progressive-image">react-progressive-image</a>, the additions being the usage of <a href="https://github.com/joshwnj/react-visibility-sensor">react-visibility-sensor</a> to check if there is a need to load the image and making sure that the image doesn't load in advance when it's not really needed.
+A good amount of code has been inspired from <a href="https://github.com/FormidableLabs/react-progressive-image">react-progressive-image</a>, the additions being the usage of <a href="https://github.com/joshwnj/react-visibility-sensor">react-visibility-sensor</a> to check if there is a need to load the image and making sure that the image doesn't load in advance when it's not really needed. It's also refactored to make use of the new React 16+ hook system.
 
 <hr/>
 
@@ -102,4 +108,4 @@ A good amount of code has been taken from <a href="https://github.com/Formidable
 
 1. <a href="https://github.com/FormidableLabs"> Formidable Labs </a>
 2. <a href="https://github.com/joshwnj"> Josh Johnston </a>
-3. <a href="https://github.com/imbhargav5">Bhargav Ponnapalli</a> (Found out about his library by searching a free name on npmjs.com turned out our components are almost the same)
+3. <a href="https://github.com/imbhargav5">Bhargav Ponnapalli</a> (Found out about his library by searching a free name on npmjs.com turned out our components are almost the same. Inspired the README)
