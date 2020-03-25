@@ -53,6 +53,7 @@ ProgressiveImage.propTypes = {
 	timingFunction: PropTypes.string,
 	initialBlur: PropTypes.number,
 	uri: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired,
 };
 
 export default ProgressiveImage;

@@ -94,7 +94,8 @@ ProgressiveImage.propTypes = {
   transitionTime: _propTypes["default"].number,
   timingFunction: _propTypes["default"].string,
   initialBlur: _propTypes["default"].number,
-  uri: _propTypes["default"].string.isRequired
+  uri: _propTypes["default"].string.isRequired,
+  placeholder: _propTypes["default"].string.isRequired
 };
 var _default = ProgressiveImage;
 exports["default"] = _default;
