@@ -53,9 +53,11 @@ import LazyImage from 'react-lazy-blur-image';
 
 const App = () => {
   return (
-    <LazyImage placeholder={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
-        {(src, style) => <img src={src} style={style} />}
-    </LazyImage>
+    <LazyImage
+        placeholder={'http://example.com/placeholder.png'}
+        uri={'http://example.com/src.png'}
+        render={(src, style) => <img src={src} style={style} />}
+    />
   );
 };
 ```
@@ -92,9 +94,11 @@ const Image = styled.img`
 
 const Usage = () => {
   return (
-    <LazyImage uri={'/assets/imageURL'} placeholder={'/assets/placeholderURL'}>
-        {(src, style) => <Image src={src} style={style} />}
-    </LazyImage>
+    <LazyImage
+        uri={'/assets/imageURL'}
+        placeholder={'/assets/placeholderURL'}
+        render={(src, style) => <Image src={src} style={style} />}
+    />
   );
 };
 ```
