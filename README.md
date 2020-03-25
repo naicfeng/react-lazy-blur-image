@@ -1,14 +1,13 @@
-# react-lazy-progressive-image
+# react-lazy-blur-image
 
-Load low resolution/ placeholder image first and then load the actual image lazily when it's in the viewport.
+Load low resolution / placeholder image first and then load the actual image lazily when it's in the viewport.
 
 <hr/>
 
-[![](https://nodei.co/npm/react-lazy-progressive-image.png?compact=true)](https://nodei.co/npm/react-lazy-progressive-image/)
+[![](https://nodei.co/npm/react-lazy-blur-image.png?compact=true)](https://nodei.co/npm/react-lazy-progressive-image/)
 
-[![npm](https://img.shields.io/npm/dm/react-lazy-progressive-image.svg?style=for-the-badge)](https://www.npmjs.com/package/react-lazy-progressive-image)
-[![npm](https://img.shields.io/npm/l/react-lazy-progressive-image.svg?style=for-the-badge)](https://www.npmjs.com/package/react-lazy-progressive-image)
-![Build Status](https://github.com/imbhargav5/react-lazy-progressive-image/workflows/Tests/badge.svg)
+[![npm](https://img.shields.io/npm/dm/react-blur-image.svg?style=for-the-badge)](https://www.npmjs.com/package/react-lazy-blur-image)
+[![npm](https://img.shields.io/npm/l/react-blur-image.svg?style=for-the-badge)](https://www.npmjs.com/package/react-lazy-blur-image)
 
 </p>
 <hr/>
@@ -19,7 +18,7 @@ Load low resolution/ placeholder image first and then load the actual image lazi
 
 # :zap: Why?
 
-Load low resolution/ placeholder image first and then load the actual image lazily when it's in the viewport.
+Load low resolution / placeholder image first and then load the actual image lazily when it's in the viewport.
 
 <hr/>
 
@@ -28,7 +27,7 @@ Load low resolution/ placeholder image first and then load the actual image lazi
 The package is available on npm.
 
 ```bash
-npm i -s react-lazy-progressive-image
+npm i -s react-lazy-blur-image
 ```
 
 <hr/>

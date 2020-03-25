@@ -4,7 +4,9 @@ import VisibilitySensor from 'react-visibility-sensor';
 
 const ProgressiveImage = ({ render, uri, thumbnail, initialBlur, timingFunction, transitionTime }) => {
 	const [blur, setBlur] = useState(initialBlur);
-	const [src, setSrc] = useState(thumbnail);
+	const [src, setSrc] = useState(
+		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEXMzMzKUkQnAAAAH0lEQVRoQ+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABy+M9HgAAAABJRU5ErkJggg=='
+	);
 
 	const fetch = useCallback(() => {
 		const image = new Image();
@@ -27,9 +29,12 @@ const ProgressiveImage = ({ render, uri, thumbnail, initialBlur, timingFunction,
 	};
 
 	return (
-		<VisibilitySensor partialVisibility={true}>
+		<VisibilitySensor offset={{ bottom: -500 }} partialVisibility={true}>
 			{({ isVisible }) => {
-				if (isVisible && blur) fetch();
+				if (isVisible && blur) {
+					setSrc(thumbnail);
+					fetch();
+				}
 
 				return render(src, getStyle());
 			}}
@@ -40,7 +45,7 @@ const ProgressiveImage = ({ render, uri, thumbnail, initialBlur, timingFunction,
 ProgressiveImage.defaultProps = {
 	transitionTime: 500,
 	timingFunction: 'ease',
-	initialBlur: 10,
+	initialBlur: 5,
 };
 
 ProgressiveImage.propTypes = {

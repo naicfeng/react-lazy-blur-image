@@ -44,13 +44,12 @@ var ProgressiveImage = function ProgressiveImage(_ref) {
       blur = _useState2[0],
       setBlur = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(thumbnail),
+  var _useState3 = (0, _react.useState)('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEXMzMzKUkQnAAAAH0lEQVRoQ+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABy+M9HgAAAABJRU5ErkJggg=='),
       _useState4 = _slicedToArray(_useState3, 2),
       src = _useState4[0],
       setSrc = _useState4[1];
 
   var fetch = (0, _react.useCallback)(function () {
-    console.log('FETCH', uri);
     var image = new Image();
     image.src = uri;
     image.addEventListener('load', function () {
@@ -67,10 +66,19 @@ var ProgressiveImage = function ProgressiveImage(_ref) {
   };
 
   return /*#__PURE__*/_react["default"].createElement(_reactVisibilitySensor["default"], {
+    offset: {
+      top: -100,
+      bottom: -1000
+    },
     partialVisibility: true
   }, function (_ref2) {
     var isVisible = _ref2.isVisible;
-    if (isVisible && blur) fetch();
+
+    if (isVisible && blur) {
+      setSrc(thumbnail);
+      fetch();
+    }
+
     return render(src, getStyle());
   });
 };
@@ -78,7 +86,7 @@ var ProgressiveImage = function ProgressiveImage(_ref) {
 ProgressiveImage.defaultProps = {
   transitionTime: 500,
   timingFunction: 'ease',
-  initialBlur: 10
+  initialBlur: 5
 };
 ProgressiveImage.propTypes = {
   transitionTime: _propTypes["default"].number,
