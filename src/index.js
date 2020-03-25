@@ -7,7 +7,6 @@ const ProgressiveImage = ({ render, uri, thumbnail, initialBlur, timingFunction,
 	const [src, setSrc] = useState(thumbnail);
 
 	const fetch = useCallback(() => {
-		console.log('FETCH', uri);
 		const image = new Image();
 		image.src = uri;
 		image.addEventListener(
