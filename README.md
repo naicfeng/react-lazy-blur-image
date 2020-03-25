@@ -42,7 +42,7 @@ import LazyImage from 'react-lazy-progressive-image';
 
 const App = () => {
 	return (
-		<LazyImage thumbnail={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
+		<LazyImage placeholder={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
 			{(src, style) => <img src={src} style={style} />}
 		</LazyImage>
 	);
@@ -83,7 +83,7 @@ const Image = styled.img`
 
 const Usage = () => {
 	return (
-		<LazyImage uri={'/assets/imageURL'} thumbnail={'/assets/placeholderURL'}>
+		<LazyImage uri={'/assets/imageURL'} placeholder={'/assets/placeholderURL'}>
 			{(src, style) => <Image src={src} style={style} />}
 		</LazyImage>
 	);

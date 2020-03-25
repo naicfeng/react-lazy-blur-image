@@ -34,7 +34,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var ProgressiveImage = function ProgressiveImage(_ref) {
   var render = _ref.render,
       uri = _ref.uri,
-      thumbnail = _ref.thumbnail,
+      placeholder = _ref.placeholder,
       initialBlur = _ref.initialBlur,
       timingFunction = _ref.timingFunction,
       transitionTime = _ref.transitionTime;
@@ -67,15 +67,17 @@ var ProgressiveImage = function ProgressiveImage(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement(_reactVisibilitySensor["default"], {
     offset: {
-      top: -100,
-      bottom: -1000
+      bottom: -300,
+      top: -300,
+      left: -300,
+      right: -300
     },
     partialVisibility: true
   }, function (_ref2) {
     var isVisible = _ref2.isVisible;
 
     if (isVisible && blur) {
-      setSrc(thumbnail);
+      setSrc(placeholder);
       fetch();
     }
 

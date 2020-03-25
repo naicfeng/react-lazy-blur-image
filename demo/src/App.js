@@ -21,7 +21,7 @@ function App() {
 					return (
 						<ProgressiveImage
 							uri={`https://picsum.photos/seed/${index}/200/300/`}
-							thumbnail={`https://picsum.photos/seed/${index}/200/300`}
+							placeholder={`https://picsum.photos/seed/${index}/200/300`}
 							render={(src, style) => (
 								<div
 									style={{
