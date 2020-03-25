@@ -46,16 +46,17 @@ yarn add react-lazy-blur-image
 
 This component expects exactly one child which has to be a function. You get the `src` and the `style` to apply (for blur effect)
 
+<!-- prettier-ignore -->
 ```javascript
 import React from 'react';
 import LazyImage from 'react-lazy-blur-image';
 
 const App = () => {
-	return (
-		<LazyImage placeholder={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
-			{(src, style) => <img src={src} style={style} />}
-		</LazyImage>
-	);
+  return (
+    <LazyImage placeholder={'http://example.com/placeholder.png'} uri={'http://example.com/src.png'}>
+        {(src, style) => <img src={src} style={style} />}
+    </LazyImage>
+  );
 };
 ```
 
@@ -75,24 +76,26 @@ You can use the `render props` as mentioned above and then use it to animate the
 
 For eg :
 
+<!-- prettier-ignore -->
 ```javascript
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import LazyImage from 'react-lazy-blur-image';
 
 const Image = styled.img`
-	height: 450px;
-	width: 800px;
-	margin-top: 200px;
-	display: block;
+  height: 450px;
+  width: 800px;
+  margin-top: 200px;
+  display: block;
+  object-fit: cover;
 `;
 
 const Usage = () => {
-	return (
-		<LazyImage uri={'/assets/imageURL'} placeholder={'/assets/placeholderURL'}>
-			{(src, style) => <Image src={src} style={style} />}
-		</LazyImage>
-	);
+  return (
+    <LazyImage uri={'/assets/imageURL'} placeholder={'/assets/placeholderURL'}>
+        {(src, style) => <Image src={src} style={style} />}
+    </LazyImage>
+  );
 };
 ```
 
