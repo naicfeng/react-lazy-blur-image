@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import VisibilitySensor from 'react-visibility-sensor';
 
@@ -19,6 +19,10 @@ const ProgressiveImage = ({ render, uri, placeholder, initialBlur, timingFunctio
 			},
 			false
 		);
+	}, [uri]);
+	
+	useEffect(()=>{
+		setSrc(uri);
 	}, [uri]);
 
 	const getStyle = () => {
