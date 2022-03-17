@@ -44,7 +44,7 @@ var ProgressiveImage = function ProgressiveImage(_ref) {
       blur = _useState2[0],
       setBlur = _useState2[1];
 
-  var _useState3 = (0, _react.useState)('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEXMzMzKUkQnAAAAH0lEQVRoQ+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABy+M9HgAAAABJRU5ErkJggg=='),
+  var _useState3 = (0, _react.useState)('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzg0IiBoZWlnaHQ9IjI1NiIgdmVyc2lvbj0iMS4xIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNlYmViZWIiIG9mZnNldD0iMjAlIi8+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNmM2YzZjMiIG9mZnNldD0iNTAlIi8+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNlYmViZWIiIG9mZnNldD0iNzAlIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzg0IiBoZWlnaHQ9IjI1NiIgZmlsbD0iI2ViZWJlYiIvPgogIDxyZWN0IGlkPSJyIiB3aWR0aD0iMzg0IiBoZWlnaHQ9IjI1NiIgZmlsbD0idXJsKCNnKSIvPgogIDxhbmltYXRlIHhsaW5rOmhyZWY9IiNyIiBhdHRyaWJ1dGVOYW1lPSJ4IiBmcm9tPSItNDgwIiB0bz0iNDgwIiBkdXI9IjEuMnMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIi8+Cjwvc3ZnPg=='),
       _useState4 = _slicedToArray(_useState3, 2),
       src = _useState4[0],
       setSrc = _useState4[1];
